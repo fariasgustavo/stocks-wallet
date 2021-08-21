@@ -10,3 +10,21 @@ services:
     ports:
       - 8000:8000
       - 9229:9229
+    networks: 
+      - general-network
+
+  postgresdb:
+    container_name: stockswalletpostgresdb
+    restart: always
+    environment: 
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - ./database:/var/lib/postgresql/data
+    ports: 
+      - 5432:5432
+    networks: 
+      - general-network
+
+networks: 
+  general-network:
+    driver: bridge
