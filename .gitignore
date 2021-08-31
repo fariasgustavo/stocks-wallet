@@ -65,3 +65,4 @@ dist/
 
 # Database docker volume
 database/
+database_test/

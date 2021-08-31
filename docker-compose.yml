@@ -2,29 +2,26 @@ version: '3'
 
 services:
   nodejs:
-    container_name: stockswalletserver
+    container_name: UserHobbiessServer
     build: .
-    restart: always
     volumes:
       - .:/usr/src/app
     ports:
       - 8000:8000
       - 9229:9229
-    networks: 
+    networks:
       - general-network
 
-  postgresdb:
-    container_name: stockswalletpostgresdb
-    restart: always
-    environment: 
-      POSTGRES_PASSWORD: 123456
+  mongo:
+    container_name: UsersHobbiesDB
+    image: mongo
+    ports:
+      - 27017:27017
     volumes:
-      - ./database:/var/lib/postgresql/data
-    ports: 
-      - 5432:5432
-    networks: 
+      - ./database:/data/db
+    networks:
       - general-network
 
-networks: 
+networks:
   general-network:
     driver: bridge
